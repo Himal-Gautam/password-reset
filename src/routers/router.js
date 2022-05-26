@@ -15,7 +15,7 @@ router.post("/users/password-reset/get-email", async (req, res) => {
     } else {
       const resAuth = await Auth(
         req.body.email,
-        "and resetting password. Please click the link https://password-reset-guvi.netlify.app/password-reset"
+        "and resetting password. Please click the link https://password-reset-guvi.netlify.app/forgot-password/reset"
       );
       user["otp"] = resAuth.OTP;
       await user.save();

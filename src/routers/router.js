@@ -38,6 +38,7 @@ router.patch("/users/password-reset/reset", async (req, res) => {
     } else {
       // user.password = await bcrypt.hash(user.password, 8)
       user["password"] = await bcrypt.hash(req.body.password, 8)
+      user["otp"] = undefined
       await user.save();
       res.status(200).send({ success: true, msg: "Task Completed" });
     }

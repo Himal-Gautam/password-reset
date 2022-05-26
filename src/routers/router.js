@@ -3,6 +3,7 @@ import User from "../models/user.js";
 import crypto from "crypto";
 import nodemailer from "nodemailer";
 import { Auth } from "two-step-auth";
+import bcrypt from 'bcryptjs'
 
 const router = new express.Router();
 
@@ -35,7 +36,8 @@ router.patch("/users/password-reset/reset", async (req, res) => {
         .status(400)
         .send({ success: false, msg: "User not found with email" });
     } else {
-      user["password"] = req.body.password;
+      // user.password = await bcrypt.hash(user.password, 8)
+      user["password"] = await bcrypt.hash(req.body.password, 8)
       await user.save();
       res.status(200).send({ success: true, msg: "Task Completed" });
     }

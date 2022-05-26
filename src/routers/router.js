@@ -40,7 +40,7 @@ router.patch("/users/password-reset/reset", async (req, res) => {
       res.status(200).send({ success: true, msg: "Task Completed" });
     }
   } catch (e) {
-    res.status(400).send(e);
+    res.status(400).send(e, occured);
   }
 });
 
